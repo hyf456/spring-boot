@@ -110,6 +110,9 @@ public class DispatcherServletAutoConfiguration {
 	@Configuration(proxyBeanMethods = false)
 	@Conditional(DispatcherServletRegistrationCondition.class)
 	@ConditionalOnClass(ServletRegistration.class)
+	// 此处采用这个注解，可议把WebMvcProperties这个Bean加载到容器里面去~~~
+	// WebMvcProperties里面使用了`@ConfigurationProperties(prefix = "spring.mvc")`
+	//加载MVC的配置文件
 	@EnableConfigurationProperties(WebMvcProperties.class)
 	@Import(DispatcherServletConfiguration.class)
 	protected static class DispatcherServletRegistrationConfiguration {
